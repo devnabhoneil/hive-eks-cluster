@@ -114,4 +114,4 @@ Two-phase apply (deploy_app): Avoids cluster-read and Kubernetes API auth issues
 
 Private worker nodes + NAT: Nodes run in private subnets and use NAT for outbound access (e.g., pulling public container images).
 
-> Simple public image: The workload uses a public image by default (nginx).
+> Simple public image: The workload uses a public image by default (nginx-alpine).
