@@ -63,8 +63,7 @@ kubectl get ns
 
 If kubectl get ns does not work, confirm:
 
-## The same AWS credentials/profile as Terraform
-
+The same AWS credentials/profile as Terraform
 The cluster exists in the region
 
 ## The IAM principal has EKS cluster access (this repo configures EKS access for the Terraform identity)
@@ -90,7 +89,7 @@ kubectl -n app get svc
 kubectl -n app get deploy
 ```
 
-Destroy
+## Destroy
 
 To tear everything down:
 
@@ -115,4 +114,4 @@ Two-phase apply (deploy_app): Avoids cluster-read and Kubernetes API auth issues
 
 Private worker nodes + NAT: Nodes run in private subnets and use NAT for outbound access (e.g., pulling public container images).
 
-## Simple public image: The workload uses a public image by default (nginx).
+> Simple public image: The workload uses a public image by default (nginx).
