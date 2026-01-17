@@ -2,15 +2,15 @@
 
 This repository contains a Terraform module that provisions an AWS EKS Kubernetes cluster and deploys a simple containerized service onto it.
 
-What it creates end-to-end:
+### What it creates end-to-end:
 - VPC (public/private subnets, routing, NAT) — networking/ancillary infrastructure
 - EKS cluster + managed node group
 - Kubernetes namespace + Deployment + Service (LoadBalancer) running a public container image (default: `nginx:alpine`)
 
-Repo layout:
+### Repo layout:
 - `modules/eks_cluster/` — reusable Terraform module (VPC + EKS + optional app deployment)
 - `modules/eks_cluster/k8s_app/` — Kubernetes resources (namespace, deployment, service)
-- `examples/demo/` — root Terraform configuration that calls the module and wires providers
+- `dev` — root Terraform configuration that calls the module and wires providers
 
 ---
 
@@ -19,13 +19,13 @@ Repo layout:
 - Terraform >= 1.6
 - AWS CLI v2 configured with credentials
 - kubectl
-- An AWS account where you can create VPC, EKS, IAM, EC2, and Load Balancers
+- An AWS account where we can create VPC, EKS, IAM, EC2, and Load Balancers
 
 > Note: EKS provisioning can take several minutes and incurs AWS costs (EKS control plane, NAT gateway, worker nodes, and LoadBalancer).
 
 ## Configure AWS Credentials
 
-Ensure your AWS identity is configured and working:
+Ensure the AWS identity is configured and working:
 
 ```bash
 aws sts get-caller-identity
@@ -33,12 +33,12 @@ aws sts get-caller-identity
 
 ## Deploy (End-to-End)
 
-All commands below are run from examples/demo.
+All commands below are run from dev. 
 
 ## 1) Initialize
 
 ```bash
-cd examples/demo
+cd dev
 terraform init
 ```
 
@@ -82,7 +82,7 @@ The Kubernetes Service is of type LoadBalancer, so AWS will provision a public e
 terraform output -raw service_url
 ```
 
-You can also check directly:
+We can also check directly:
 
 ```bash
 kubectl -n app get svc
